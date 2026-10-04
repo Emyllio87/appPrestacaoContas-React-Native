@@ -1,0 +1,241 @@
+?<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Preview - PDF Prestação de Contas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @page { size: A4 portrait; margin: 0; }
+    html, body {
+      font-family: Helvetica, Arial, sans-serif;
+      color: #1A1A1A;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .label-pagina {
+      text-align: center;
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      font-style: italic;
+      max-width: 794px;
+      width: 100%;
+    }
+    .label-pagina:first-child { margin-top: 0; }
+    .page {
+      position: relative;
+      width: 794px;
+      min-height: 1123px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      margin-bottom: 10px;
+    }
+    .page-content {
+      padding: 40px 44px 60px 44px;
+    }
+    .header {
+      text-align: center;
+      border-bottom: 1px solid #E0E0E0;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+    .header .titulo { font-size: 20px; letter-spacing: 0.5px; }
+    .header .referencia { font-size: 14px; color: #1A1A1A; margin-top: 4px; }
+    .header .criacao { font-size: 12px; color: #757575; margin-top: 4px; }
+    .header .gerado { font-size: 9px; color: #9E9E9E; margin-top: 6px; }
+    .dados h2 {
+      font-size: 14px;
+      color: #1A1A1A;
+      border-bottom: 1px solid #E0E0E0;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .dados table { width: 100%; border-collapse: collapse; }
+    .dados td { padding: 12px 10px; border-bottom: 1px solid #F0F0F0; font-size: 12px; }
+    .dados .campo-label { color: #757575; width: 180px; }
+    .dados .campo-valor { color: #1A1A1A; }
+    .itens-titulo {
+      font-size: 14px;
+      color: #1A1A1A;
+      border-bottom: 1px solid #E0E0E0;
+      padding-bottom: 8px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .tabela { width: 100%; border-collapse: collapse; }
+    .tabela th {
+      font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: #1A1A1A; padding: 8px 10px; text-align: left;
+      font-weight: bold; border-bottom: 1px solid #D0D0D0;
+    }
+    .tabela th:nth-child(1) { text-align: center; width: 30px; }
+    .tabela td {
+      font-size: 12px; padding: 12px 10px;
+      border-bottom: 1px solid #F0F0F0; font-weight: normal;
+    }
+    .page-cupons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 1123px;
+      padding: 40px 44px 60px 44px;
+    }
+    .cupons-titulo {
+      font-size: 14px;
+      color: #1A1A1A;
+      border-bottom: 1px solid #E0E0E0;
+      padding-bottom: 8px;
+      padding-top: 5px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: left;
+    }
+    .cupons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .cupon-item {
+      display: inline-block;
+      width: 32%;
+      margin: 0.5%;
+      text-align: center;
+      vertical-align: top;
+    }
+    .cupon-placeholder {
+      width: 100%;
+      height: 160px;
+      background: #e3f2fd;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1565C0;
+      font-size: 12px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      border-top: 1px solid #F0F0F0;
+      padding: 10px 44px;
+      font-size: 8px;
+      color: #BDBDBD;
+    }
+    .anotacao {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #ffc107;
+    }
+    .anotacao-footer {
+      position: absolute;
+      bottom: 30px;
+      right: 10px;
+      background: #d4edda;
+      color: #155724;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #28a745;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label-pagina">Pagina 1 — Conteudo (resumo + despesas)</div>
+  <div class="page">
+    <div class="page-content">
+      <div class="header">
+        <div class="titulo">Relatorio de Prestacao de Contas</div>
+        <div class="referencia">Prestacao Setembro 2026</div>
+        <div class="criacao">Criada em 01/09/2026 · Fechada em 10/09/2026</div>
+        <div class="gerado">Relatorio gerado em 10/09/2026 as 14:30</div>
+      </div>
+      <div class="dados">
+        <h2>Resumo Financeiro</h2>
+        <table>
+          <tr><td class="campo-label">Valor recebido</td><td class="campo-valor">R$ 5.000,00</td></tr>
+          <tr><td class="campo-label">Total gasto</td><td class="campo-valor">R$ 3.250,00</td></tr>
+          <tr><td class="campo-label">Saldo caixa</td><td class="campo-valor">R$ 1.750,00</td></tr>
+        </table>
+      </div>
+      <div class="itens-titulo">Despesas</div>
+      <table class="tabela">
+        <thead>
+          <tr><th>#</th><th>Descricao</th><th>Categoria</th><th>Data</th><th style="text-align:right">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:center;font-weight:bold;">1</td><td>Almoco equipe</td><td>Alimentacao</td><td>02/09/2026</td><td style="text-align:right">R$ 120,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">2</td><td>Uber reuniao cliente</td><td>Transporte</td><td>03/09/2026</td><td style="text-align:right">R$ 45,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">3</td><td>Material de escritorio</td><td>Material</td><td>04/09/2026</td><td style="text-align:right">R$ 230,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">4</td><td>Combustivel</td><td>Transporte</td><td>05/09/2026</td><td style="text-align:right">R$ 200,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">5</td><td>Cafe da manha</td><td>Alimentacao</td><td>06/09/2026</td><td style="text-align:right">R$ 85,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">6</td><td>Estacionamento</td><td>Transporte</td><td>07/09/2026</td><td style="text-align:right">R$ 30,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">7</td><td>Impressoes</td><td>Material</td><td>08/09/2026</td><td style="text-align:right">R$ 50,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">8</td><td>Almoco cliente</td><td>Alimentacao</td><td>09/09/2026</td><td style="text-align:right">R$ 180,00</td></tr>
+          <tr><td style="text-align:center;font-weight:bold;">9</td><td>Taxi aeroporto</td><td>Transporte</td><td>09/09/2026</td><td style="text-align:right">R$ 95,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="anotacao-footer">footer: position fixed, bottom: 0</div>
+    <div class="footer">Documento gerado automaticamente · 10/09/2026 as 14:30</div>
+  </div>
+
+  <div class="label-pagina">Pagina 2 — Cupons (centralizados V+H, padding-top: 5px)</div>
+  <div class="page page-cupons">
+    <div class="anotacao">flex center + min-height: 100vh</div>
+    <div class="cupons-titulo">Cupons anexados</div>
+    <div class="cupons-grid">
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#1 - Almoco equipe</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">02/09/2026 · R$ 120,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#2 - Uber reuniao cliente</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">03/09/2026 · R$ 45,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#3 - Material de escritorio</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">04/09/2026 · R$ 230,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#4 - Combustivel</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">05/09/2026 · R$ 200,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#5 - Cafe da manha</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">06/09/2026 · R$ 85,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+      <div class="cupon-item">
+        <div style="font-size:10px;font-weight:bold;color:#1565C0;margin-bottom:2px;">#6 - Estacionamento</div>
+        <div style="font-size:9px;color:#757575;margin-bottom:2px;">07/09/2026 · R$ 30,00</div>
+        <div class="cupon-placeholder">[ Imagem do Cupom ]</div>
+      </div>
+    </div>
+    <div class="anotacao-footer">footer: position fixed, bottom: 0</div>
+    <div class="footer">Documento gerado automaticamente · 10/09/2026 as 14:30</div>
+  </div>
+
+</body>
+</html>

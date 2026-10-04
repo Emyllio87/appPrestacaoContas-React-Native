@@ -1,29 +1,44 @@
 {
   "expo": {
-    "name": "prestacao-contas",
+    "name": "Prestação de Contas",
     "slug": "prestacao-contas",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "prestacaocontas",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1565C0"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.emyllio.prestacaocontas"
     },
     "android": {
+      "package": "com.emyllio.prestacaocontas",
+      "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+        "backgroundColor": "#1565C0"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sharing",
+      "expo-status-bar",
+      "@react-native-community/datetimepicker"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "65988925-bffa-4212-9085-f6613c186bcb"
+      }
+    },
+    "owner": "emyllio"
   }
 }
